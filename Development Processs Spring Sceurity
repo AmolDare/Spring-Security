@@ -1,0 +1,68 @@
+Part1 Setup web app
+1.Add maven dependency for spring mvc web app
+2.Create Spring app configuration using @Configuration
+3.Create Spring dispatcher servlet initializer
+4.Develop Spring controller
+5.Develope views
+
+@EnableWebMvc
+--Provides similar support as <mvc:annotation-driven> in XML
+Adds conversion,formatting and validation support
+
+
+Spring Security configuration
+Step1.Find compatible version of Spring security for your core spring framework
+Add 2 dependencies Spring security web and spring security config
+
+Step2.Create Spring Security Initializer. -- create a class extending AbstractSecurityWebApplicationInitializer
+
+Step3.Create Spring security Configuration--
+@Configuration
+@EnableWebSecurity
+public class DemoSecurityConfig extends WebSecurityConfigurerAdapter{
+}
+
+Step4.Add users,passwords and roles
+ override method -
+  protected void configure(AuthenticationManagerBuilder Auth) throws Exception
+  e.g.
+  @Configuration
+@EnableWebSecurity
+public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
+
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+		// add our users for in memory authentication
+		
+		UserBuilder users = User.withDefaultPasswordEncoder();
+		auth.inMemoryAuthentication()
+		.withUser(users.username("amol").password("1234").roles("EMPLOYEE"));
+		auth.inMemoryAuthentication()
+		.withUser(users.username("palto").password("1234").roles("MANAGER"));
+		auth.inMemoryAuthentication()
+		.withUser(users.username("susan").password("1234").roles("ADMIN"));
+	}
+	
+}
+
+
+///Adding custom Login Form
+Dev process
+1.Modify Spring security configuration to reference custom login form
+  ovverride protected void configure(HttpSecurity http) throws Exception method
+  e.g.
+  protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests()
+			.anyRequest().authenticated()
+			.and()
+			.formLogin()
+				.loginPage("/showMyLoginPage")
+				.loginProcessingUrl("/authenticateTheUser")
+				.permitAll();
+		
+	}
+2.Develope controller to show custom login form
+
+3.Create custom login form
+
