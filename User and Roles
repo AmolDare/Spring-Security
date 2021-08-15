@@ -1,0 +1,8 @@
+Display user Id on Jsp Page
+ Dev Process
+ step1. Update POM file to add Spring Security JSP Tag lib
+ step2.Add Spring Security jsp tag lib to JSP page
+ <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+
+ Display User Id on JSP
+ 	User:<security:authentication property="principal.username"/>
