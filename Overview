@@ -1,0 +1,27 @@
+Spring security defines a framework for security
+Implemented using filters in bacgground
+Two methods-
+declarative and Programatic
+
+Declarative-
+ Define applications security constraints in configuration
+ All java config(@Configuration)
+ or Spring XML
+ Provides separation of concerns betw application code and security code
+ 
+Programatic security-
+Spring provides API for custom application coding
+Provides greater customization for your specific app requirement
+
+Diff Login Methods Spring provide
+1.Http Basic authentication
+2.Default login form provided by spring security
+3.Custom login form
+
+Authentication and AUthorization
+  In-memory
+  JDBC
+  LDAP
+  Custom/Plugable
+  
+  
